@@ -27,16 +27,13 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # Updating users
-  def update
-    user = User.find(params[:id])
+  # Deleting users
+ def destroy
+   user = User.find(params[:id])
+   user.destroy
+   head 204
+ end
 
-    if user.update(user_params)
-      render json: user, status: 200
-    else
-      render json: { errors: user.errors }, status: 422
-    end
-  end
 
   private
   def user_params
